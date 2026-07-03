@@ -1,2 +1,4 @@
 web-ext-artifacts/
 .amo-upload-uuid
+.env
+.env.fish
