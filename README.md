@@ -1,6 +1,6 @@
 # ao3_extension
 not my best code but it works :3
-## TODO 
+## TODO (not in any particular order)
 - [ ] Import history and merge for a way to kinda share between devices
 - [ ] History tag searching
 - [ ] History statistics e.g. most common tags, most common fandoms, etc.
@@ -12,3 +12,4 @@ not my best code but it works :3
 - [ ] have an icon for the extension
 - [ ] make it look pretty
 - [ ] organise the files better
+- [ ] track the time spent reading and use the word count to estimate reading speed
