@@ -25,20 +25,20 @@
         "*://*.archiveofourown.org/*"
       ],
       "js": [
-        "content.js"
+        "content/content.js"
       ],
       "css": [
-        "style.css"
+        "content/style.css"
       ],
       "run_at": "document_idle"
     }
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "/popup/popup.html",
     "default_title": "AO3 enhancer"
   },
   "options_ui": {
-    "page": "options.html",
+    "page": "/options/options.html",
     "open_in_tab": true
   }
 }
