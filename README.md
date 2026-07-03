@@ -11,3 +11,4 @@ not my best code but it works :3
 - [ ] actually publish it to the mozilla store
 - [ ] have an icon for the extension
 - [ ] make it look pretty
+- [ ] organise the files better
