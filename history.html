@@ -11,7 +11,29 @@
 <body>
     <header>
         <h1>Ao3 History</h1>
+        <section>
+            <p>Total Works Read: <span id="total-works-read">0</span></p>
+            <p>Total Word Count: <span id="total-word-count">0</span></p>
+        </section>
     </header>
+        <nav aria-label="Search and sort">
+        <search>
+            <label for="search-input">Search titles</label>
+            <input id="search-input" type="search" placeholder="Search by title…">
+        </search>
+        <p>
+            <label for="sort-select">Sort by</label>
+            <select id="sort-select">
+                <option value="date-desc">Recently read</option>
+                <option value="date-asc">Oldest read</option>
+                <option value="title-asc">Title A–Z</option>
+                <option value="title-desc">Title Z–A</option>
+                <option value="words-desc">Longest first</option>
+                <option value="words-asc">Shortest first</option>
+            </select>
+        </p>
+    </nav>
+
     <main>
         <ul id="history-list"></ul>
     </main>

@@ -1,5 +1,5 @@
 (function () {
-    const dataVersion = 2;
+    const dataVersion = 1;
 
     if (window.location.pathname.match(/\/works\/[0-9]+/)) {
         workPage();
@@ -63,20 +63,61 @@
 
         async function getWorkInfo(workId) {
             const read = await isRead(workId);
-            let data = { [workId]: { dataVersion: dataVersion, read: !read, workName: undefined, wordCount: undefined } };
+            let data = {
+                [workId]: {
+                    dataVersion: dataVersion,
+                    read: !read,
+                    title: undefined,
+                    author: undefined,
+                    wordCount: undefined,
+                    lastSaved: undefined,
+                }
+            };
+
+            const prefaceContainer = document.querySelector(".preface.group") || document;
+            const workNameElement = prefaceContainer.querySelector("h2.title.heading");
+            const authorElement = prefaceContainer.querySelector("h3.byline.heading a[rel='author']");
+            const summaryElement = prefaceContainer.querySelector("div.summary blockquote.userstuff");
+
+            if (workNameElement) data[workId].title = workNameElement.textContent.trim();
+            if (authorElement) data[workId].author = authorElement.textContent.trim();
+            if (summaryElement) data[workId].summary = summaryElement.textContent.trim();
 
             const workContainer = document.querySelector(".work.meta.group") || document;
-
-            const workNameElement = workContainer.querySelector("h2.title.heading");
-            if (workNameElement) {
-                data[workId].workName = workNameElement.textContent.trim();
-            }
+            const saveTime = Math.floor(Date.now() / 1000);
 
             const wordCountElement = workContainer.querySelector("dd.words");
+            const ratingElement = workContainer.querySelector("dd.rating");
+            const warningElement = workContainer.querySelector("dd.warning");
+            const fandomElement = workContainer.querySelector("dd.fandom");
+            const characterElement = workContainer.querySelector("dd.character");
+            const relationshipElement = workContainer.querySelector("dd.relationship");
+            const freeformElement = workContainer.querySelector("dd.freeform");
+            const languageElement = workContainer.querySelector("dd.language");
+            const publishedElement = workContainer.querySelector("dd.published");
+
+            const getTagArray = (dd) =>
+                dd ? [...dd.querySelectorAll("a.tag")].map(el => el.textContent.trim()) : [];
+
             if (wordCountElement) {
                 data[workId].wordCount = parseInt(wordCountElement.textContent.replace(/,/g, ''));
             }
+            if (languageElement) {
+                data[workId].language = languageElement.textContent.trim();
+            }
 
+            data[workId].rating = getTagArray(ratingElement)[0] ?? null;
+            data[workId].warning = getTagArray(warningElement);
+            data[workId].fandom = getTagArray(fandomElement);
+            data[workId].character = getTagArray(characterElement);
+            data[workId].relationship = getTagArray(relationshipElement);
+            data[workId].freeform = getTagArray(freeformElement);
+
+            if (publishedElement) {
+                data[workId].published = new Date(publishedElement.textContent.trim()).getTime() / 1000;
+            }
+
+            data[workId].lastSaved = saveTime;
             return data;
         }
     }

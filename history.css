@@ -1,0 +1,110 @@
+body {
+    font-family: 'serif';
+}
+
+.work {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border: 1px solid #ccc;
+    padding: 0.429em 0.75em;
+    margin: 0.643em 0;
+}
+
+.work-title {
+    font-weight: bold;
+    font-size: 1.143em;
+    padding-bottom: 0em;
+    margin-bottom: 0.143em;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.work-link {
+    color: #900;
+}
+
+.work-author {
+    color: #900;
+}
+
+.work-fandom a {
+    padding-top: 0.1em;
+    color: #000;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.work-fandom li::after {
+    content: ", ";
+}
+.work-fandom li:last-child::after {
+    content: "";
+}
+.work-fandom li {
+    display: inline;
+    padding-right: 0.5em;
+}
+
+.work-tags {
+    padding-top: 1em;
+    color: #000;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.work-tags ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.work-tags li {
+    display: inline;
+    padding-right: 0.5em;
+}
+
+.work-tags li::after {
+    content: ", ";
+}
+
+.work-tags li:last-child::after {
+    content: "";
+}
+
+
+.work-tags a {
+    color: #000;
+    text-decoration: none;
+}
+
+.work-tags a:hover {
+    background-color: #900;
+    color: #fff;
+}
+
+.tag-warning {
+    font-weight: bold;
+}
+
+.tag-relationship a {
+    background-color: #eee;
+}
+
+.work-meta {
+    text-align: right;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.work-meta li {
+    display: inline;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
