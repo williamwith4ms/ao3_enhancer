@@ -15,7 +15,7 @@
     document.getElementById("total-word-count").textContent = totalWordCount.toLocaleString();
 
     document.getElementById("open-history").addEventListener("click", () => {
-        browser.tabs.create({ url: browser.runtime.getURL("history.html") });
+        browser.tabs.create({ url: browser.runtime.getURL("/history/history.html") });
     });
 
     document.getElementById("open-options").addEventListener("click", () => {
