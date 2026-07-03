@@ -1,12 +1,5 @@
+import { loadWorks } from "../common/common.js";
 let works = [];
-
-function loadWorks() {
-    return browser.storage.local.get(null).then(storedWorks =>
-        Object.entries(storedWorks)
-            .filter(([, workData]) => workData && workData.read)
-            .map(([workId, workData]) => ({ id: workId, ...workData }))
-    );
-}
 
 function getFilteredSortedWorks() {
     const query = document.getElementById("search-input").value.trim().toLowerCase();
