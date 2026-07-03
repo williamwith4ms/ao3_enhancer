@@ -1,0 +1,11 @@
+.ao3ext_read {
+    opacity: 0.5;
+}
+
+.ao3ext_read_badge {
+    background-color: #900;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0.1em 0.2em;
+    border-radius: .5em;
+}

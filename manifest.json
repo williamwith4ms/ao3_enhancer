@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "ao3 Extension",
+  "version": "1.0",
+  "description": "todo",
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ao3@willliammmm.dev",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.archiveofourown.org/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "style.css"
+      ]
+    }
+  ]
+}
