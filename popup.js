@@ -13,4 +13,8 @@
 
     document.getElementById("total-works-read").textContent = totalWorksRead;
     document.getElementById("total-word-count").textContent = totalWordCount.toLocaleString();
+
+    document.getElementById("open-history").addEventListener("click", () => {
+        browser.tabs.create({ url: browser.runtime.getURL("history.html") });
+    });
 })();
