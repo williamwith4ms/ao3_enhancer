@@ -21,4 +21,8 @@
     document.getElementById("open-options").addEventListener("click", () => {
         browser.runtime.openOptionsPage();
     });
+
+    document.getElementById("open-stats").addEventListener("click", () => {
+        browser.tabs.create({ url: browser.runtime.getURL("/stats/stats.html") });
+    });
 })();
