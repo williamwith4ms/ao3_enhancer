@@ -17,4 +17,8 @@
     document.getElementById("open-history").addEventListener("click", () => {
         browser.tabs.create({ url: browser.runtime.getURL("history.html") });
     });
+
+    document.getElementById("open-options").addEventListener("click", () => {
+        browser.runtime.openOptionsPage();
+    });
 })();
