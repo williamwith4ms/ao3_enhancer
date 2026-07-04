@@ -1,4 +1,4 @@
-import { loadWorks } from "../common/common.js";
+import { loadWorks, ao3UriEncode} from "../common/common.js";
 let works = [];
 
 function getFilteredSortedWorks() {
@@ -38,15 +38,18 @@ function renderWork(workData, workId, currentTime) {
     title.classList.add("work-title");
     const workLink = document.createElement("a");
     const authorLink = document.createElement("a");
+    const author = workData.author ?? "Unknown Author";
 
-    workLink.href = `https://archiveofourown.org/works/${encodeURIComponent(workId)}`;
+    workLink.href = `https://archiveofourown.org/works/${ao3UriEncode(workId)}`;
     workLink.textContent = workData.title ?? "Unknown Title";
     workLink.classList.add("work-link");
     title.appendChild(workLink);
     title.appendChild(document.createTextNode(" by "));
-    authorLink.href = `https://archiveofourown.org/users/${encodeURIComponent(workData.author)}/`;
-    authorLink.textContent = workData.author ?? "Unknown Author";
+    authorLink.textContent = author;
     authorLink.classList.add("work-author");
+    if (workData.author) {
+        authorLink.href = `https://archiveofourown.org/users/${ao3UriEncode(workData.author)}/`;
+    }
     title.appendChild(authorLink);
     listItem.appendChild(title);
 
@@ -57,7 +60,7 @@ function renderWork(workData, workId, currentTime) {
             const fandomItem = document.createElement("li");
             fandomItem.classList.add("tag-fandom");
             const fandomLink = document.createElement("a");
-            fandomLink.href = `https://archiveofourown.org/tags/${encodeURIComponent(f)}/works`;
+            fandomLink.href = `https://archiveofourown.org/tags/${ao3UriEncode(f)}/works`;
             fandomLink.textContent = f;
             fandomItem.appendChild(fandomLink);
             fandom.appendChild(fandomItem);
@@ -76,7 +79,7 @@ function renderWork(workData, workId, currentTime) {
                 const tagItem = document.createElement("li");
                 tagItem.classList.add(`tag-${category}`);
                 const tagLink = document.createElement("a");
-                tagLink.href = `https://archiveofourown.org/tags/${encodeURIComponent(tag)}/works`;
+                tagLink.href = `https://archiveofourown.org/tags/${ao3UriEncode(tag)}/works`;
                 tagLink.textContent = tag;
                 tagItem.appendChild(tagLink);
                 tags.appendChild(tagItem);
