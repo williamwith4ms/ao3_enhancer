@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "AO3 Enhancer",
+  "name": "AO3 Additions",
   "version": "1.1",
-  "description": "Enhances AO3 by improving history functionality",
-  "homepage_url": "https://github.com/williamwith4ms/ao3_enhancer",
+  "description": "Provides various additional features for ao3",
+  "homepage_url": "https://github.com/williamwith4ms/ao3_additions",
   "author": "willliammmm",
   "permissions": [
     "storage",
@@ -47,7 +47,7 @@
       "32": "/icons/icon-32.png"
     },
     "default_popup": "/popup/popup.html",
-    "default_title": "AO3 Enhancer"
+    "default_title": "AO3 Additions"
   },
   "options_ui": {
     "page": "/options/options.html",
