@@ -9,3 +9,37 @@
     padding: 0.1em 0.2em;
     border-radius: .5em;
 }
+
+.ao3ext_blurred {
+    /* opacity: 0.5; */
+    filter: grayscale(100%) blur(10px);
+    clip-path: inset(0);
+    pointer-events: none;
+    user-select: none;
+
+}
+
+.ao3ext_unhide_button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.ao3ext_blur_container {
+    position: relative;
+}
+
+ul.tags li a.blocked-tag {
+    color: #900;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    font-weight: bold;
+}
+
+.ao3ext_revealed.ao3ext_blur_container > * {
+    filter: none;
+    pointer-events: auto;
+    user-select: auto;
+}

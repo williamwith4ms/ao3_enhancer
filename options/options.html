@@ -15,17 +15,23 @@
     <main>
         <section>
             <h2>Data Management</h2>
-            <button id="clear-data">Clear All Data</button>
-            <button id="export-data">Export Data</button>
+            <button id="clear-data">Clear All Extension Data</button>
+            <button id="export-data">Export All Data</button>
             <button id="import-data-merge">Import Data (Merge)</button>
             <button id="import-data-replace">Import Data (Replace)</button>
+        </section>
+        <section>
+            <h2>Tag Blocking</h2>
+            <label for="blocked-tags">Blocked Tags (comma-separated):</label>
+            <input type="text" id="blocked-tags" placeholder="Enter tags to block... ">
+            <button id="save-blocked-tags">Save Blocked Tags</button>
         </section>
         <section>
             <h2>Version</h2>
             <p>v1.1</p>
         </section>
     </main>
-    <script src="options.js"></script>
+    <script type="module" src="options.js"></script>
 </body>
 
 </html>
