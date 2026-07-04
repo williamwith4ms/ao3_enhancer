@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ao3 Stats</title>
+    <link rel="stylesheet" href="stats.css">
+</head>
+
+<body>
+    <header>
+        <h1>Ao3 Stats</h1>
+    </header>
+    <main>
+        <section class="stat-blocks">
+            <ul>
+                <li class="stat-block">
+                    <h2>Total Works Read:</h2>
+                    <p id="total-works-read">0</p>
+                </li>
+                <li class="stat-block">
+                    <h2>Total Word Count:</h2>
+                    <p id="total-word-count">0</p>
+                </li>
+                <li class="stat-block">
+                    <h2>Average Word Count:</h2>
+                    <p id="average-word-count">0</p>
+                </li>
+                <li class="stat-block">
+                    <h2>Total Fandoms:</h2>
+                    <p id="total-fandoms">0</p>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <nav class="tag-toggle">
+                <button class="toggle-btn active" data-mode="freeform">Top Tags</button>
+                <button class="toggle-btn" data-mode="fandom">Top Fandoms</button>
+                <button class="toggle-btn" data-mode="character">Top Characters</button>
+                <label for="result-limit">Show:</label>
+                <input type="number" id="result-limit" min="1" value="15">
+            </nav>
+            <ul id="top-list"></ul>
+        </section>
+    </main>
+
+    <script type="module" src="stats.js"></script>
+</body>
+
+</html>

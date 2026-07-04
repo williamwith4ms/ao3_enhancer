@@ -3,7 +3,8 @@ not my best code but it works :3
 ## TODO (not in any particular order)
 - [ ] Import history and merge for a way to kinda share between devices
 - [ ] History tag searching
-- [ ] History statistics e.g. most common tags, most common fandoms, etc.
+- [x] History statistics e.g. most common tags, most common fandoms, etc.
+  - [ ] Add extra stats e.g. compare to actual books, estimate reading hours, etc.
 - [ ] Search tag blocking
 - [ ] Automatic mark as read when reaching the end of a work
 - [ ] Per chapter mark as read
