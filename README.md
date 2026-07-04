@@ -1,7 +1,7 @@
 # ao3_extension
 not my best code but it works :3
 ## TODO (not in any particular order)
-- [ ] Import history and merge for a way to kinda share between devices
+- [x] Import history and merge for a way to kinda share between devices
 - [ ] History tag searching
 - [x] History statistics e.g. most common tags, most common fandoms, etc.
   - [ ] Add extra stats e.g. compare to actual books, estimate reading hours, etc.
