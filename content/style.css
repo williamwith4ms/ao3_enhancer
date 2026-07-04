@@ -9,3 +9,8 @@
     padding: 0.1em 0.2em;
     border-radius: .5em;
 }
+
+.ao3ext_blocked {
+    /* opacity: 0.5; */
+    filter: blur(20px)
+}

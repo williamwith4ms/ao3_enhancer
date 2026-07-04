@@ -20,3 +20,13 @@ export function ao3UriEncode(str) {
         .replace(/#/g, '*h*')
         .replace(/%/g, '*p*');
 }
+
+export function ao3UriDecode(str) {
+    if (str == null) return "";
+
+    return String(str).replace(/\*a\*/g, '&')
+        .replace(/\*s\*/g, '/')
+        .replace(/\*q\*/g, '?')
+        .replace(/\*h\*/g, '#')
+        .replace(/\*p\*/g, '%');
+}

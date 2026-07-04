@@ -5,11 +5,55 @@
         workPage();
     } else if (window.location.pathname.match(/\/works\/search/)) {
         searchPage();
+    } else if (window.location.pathname.match(/\/tags\/[^/]+/)) {
+        tagPage();
     }
 
     async function workPage() {
         const workId = window.location.pathname.match(/\/works\/([0-9]+)/)[1];
         injectReadButton(workId);
+    }
+
+    async function tagPage() {
+        const tagName = decodeURIComponent(window.location.pathname.match(/\/tags\/([^/]+)/)[1]);
+        injectBlockButton(tagName);
+    }
+
+    async function injectBlockButton(tagName) {
+        const nav = document.querySelector("#main .user.navigation.actions");
+        if (!nav) {
+            console.log("Navigation actions not found.");
+            return;
+        }
+
+        const listItem = document.createElement("li");
+        const blockButton = document.createElement("button");
+        blockButton.textContent = isBlocked(tagName) ? "Unblock Tag" : "Block Tag";
+
+
+        listItem.appendChild(blockButton);
+        nav.appendChild(listItem);
+
+        blockButton.addEventListener("click", async () => {
+            const blockedTags = await browser.storage.local.get("blockedTags");
+            const blockedTagsArray = blockedTags.blockedTags || [];
+            if (blockedTagsArray.includes(tagName)) {
+                // unblock
+                const index = blockedTagsArray.indexOf(tagName);
+                blockedTagsArray.splice(index, 1);
+                blockButton.textContent = "Block Tag";
+            } else {
+                // block
+                blockedTagsArray.push(tagName);
+                blockButton.textContent = "Unblock Tag";
+            }
+        });
+    }
+
+    async function isBlocked(tagName) {
+        const blockedTags = await browser.storage.local.get("blockedTags");
+        const blockedTagsArray = blockedTags.blockedTags || [];
+        return blockedTagsArray.includes(tagName);
     }
 
     async function searchPage() {
@@ -30,6 +74,25 @@
                 }
             }
         });
+
+        // tag blocking, read from the block tags in storage and blur works out with a button top unhide them
+        const blockedTags = await browser.storage.local.get("blockedTags");
+        if (blockedTags) {
+            blurbs.forEach((blurb, i) => {
+                const tags = [...blurb.querySelectorAll("ul.tags li a")].map(tag => tag.textContent.trim());
+                const hasBlockedTag = false;
+                for (const tag of tags) {
+                    if (blockedTags.blockedTags?.includes(tag)) {
+                        hasBlockedTag = true;
+                        break;
+                    }
+                }
+
+                if (hasBlockedTag) {
+                    blurb.classList.add("ao3ext_blocked");
+                }
+            });
+        }
     }
 
     async function injectReadButton(workId) {
