@@ -226,6 +226,17 @@
 
     async function loadBlockedTags() {
         const stored = await browser.storage.local.get("blockedTags");
+
+        // i dont want to mess with module imports and scope and how that works with content.js
+        // this is definitely bad practice but it works and ill fix it later
+        // TODO: use the ao3UriDecode function from common.js
+        stored.blockedTags = stored.blockedTags?.map(tag => tag.replace(/\*a\*/g, '&')
+            .replace(/\*s\*/g, '/')
+            .replace(/\*q\*/g, '?')
+            .replace(/\*h\*/g, '#')
+            .replace(/\*p\*/g, '%')
+            .replace(/\*d\*/g, '.'));
+
         return new Set(stored?.blockedTags ?? []);
     }
 

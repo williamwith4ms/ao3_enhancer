@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AO3 Additions",
-  "version": "1.2",
+  "version": "1.2.1",
   "description": "Provides various additional features for ao3",
   "homepage_url": "https://github.com/williamwith4ms/ao3_additions",
   "author": "willliammmm",
