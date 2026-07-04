@@ -73,17 +73,45 @@ main {
 }
 
 .toggle-btn {
-    padding: 0.5em 1em;
+    padding: 0.2em .5em;
     border: 1px solid #900;
     border-radius: 10em;
     background: transparent;
     cursor: pointer;
+
+    background: #eee;
+    background-image: none;
+    color: #444;
+    font-weight: 400;
+    font-size: 100%;
+    line-height: 1.286;
+    border: 1px solid #bbb;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(187, 187, 187);
+    border-bottom: 1px solid #aaa;
+    background-image: -moz-linear-gradient(#fff 2%, #ddd 95%, #bbb 100%);
+    background-image: -webkit-linear-gradient(#fff 2%, #ddd 95%, #bbb 100%);
+    background-image: -o-linear-gradient(#fff 2%, #ddd 95%, #bbb 100%);
+    background-image: -ms-linear-gradient(#fff 2%, #ddd 95%, #bbb 100%);
+    background-image: linear-gradient(#fff 2%, #ddd 95%, #bbb 100%);
+    border-radius: 0.25em;
+    box-shadow: none;
+}
+
+.toggle-btn:hover {
+    color : #900;
+    box-shadow: inset 2px 2px 2px #bbb;
 }
 
 .toggle-btn.active {
     background: #900;
     color: #fff;
     border-color: #900;
+}
+
+.toggle-btn.active:hover {
+    color: #fff;
+    box-shadow: inset 2px 2px 2px rgb(118, 0, 0);
 }
 
 .result-limit label {
