@@ -1,3 +1,5 @@
+import { ao3UriDecode, ao3UriEncode } from "../common/common.js";
+
 (function () {
 
     document.getElementById("clear-data").addEventListener("click", async () => {
@@ -72,5 +74,22 @@
             }
         });
         fileInput.click();
+    });
+
+    // load blocked tags from storage and populate the input field
+    (async () => {
+        const blockedTags = await browser.storage.local.get("blockedTags");
+        blockedTags.blockedTags = blockedTags.blockedTags?.map(tag => ao3UriDecode(tag));
+        if (blockedTags.blockedTags) {
+            document.getElementById("blocked-tags").value = blockedTags.blockedTags.join(", ");
+        }
+    })();
+
+    // save blocked tags to storage when the save button is clicked
+    document.getElementById("save-blocked-tags").addEventListener("click", async () => {
+        const blockedTagsInput = document.getElementById("blocked-tags").value;
+        const blockedTagsArray = blockedTagsInput.split(",").map(tag => ao3UriDecode(tag.trim())).filter(tag => tag.length > 0);
+        await browser.storage.local.set({ blockedTags: blockedTagsArray });
+        alert("Tags saved successfully.");
     });
 })();

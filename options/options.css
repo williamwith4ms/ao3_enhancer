@@ -23,3 +23,11 @@ button:hover {
     color : #900;
     box-shadow: inset 2px 2px 2px #bbb;
 }
+
+#blocked-tags {
+    width: 30%;
+    height: 1em;
+    padding: 0.2em;
+    border: 1px solid #bbb;
+    border-radius: 0.25em;
+}
