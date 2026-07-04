@@ -1,0 +1,91 @@
+main {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.stat-blocks ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.stat-block {
+    flex: 1 1;
+    background-color: #ccc;
+    border-radius: 1em;
+    text-align: center;
+    margin: 1em;
+}
+
+#top-list {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: .5em;
+    align-items: center;
+    margin-bottom: .2em;
+    max-width: 100%;
+    padding-left: 0;
+}
+
+.tag-item {
+    display: contents;
+}
+
+.tag-name {
+    grid-column: 1;
+    text-align: left;
+    font-weight: bold;
+}
+
+.tag-bar {
+    grid-column: 2;
+    width: 100%;
+    margin-left: 2em;
+    box-sizing: border-box;
+    align-self: center;
+
+    appearance: none;
+    height: 1em;
+    overflow: hidden;
+    background-color: #eee;
+    border: none;
+    color: #900;
+    border-radius: 2em;
+}
+
+.tag-bar::-moz-progress-bar {
+    border-radius: .5em;
+    background-color: #900;
+}
+
+.tag-count {
+    margin-left: 2em;
+    grid-column: 3;
+    text-align: right;
+    color: #666;
+    white-space: nowrap;
+}
+
+.tag-toggle {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.toggle-btn {
+    padding: 0.5em 1em;
+    border: 1px solid #900;
+    border-radius: 10em;
+    background: transparent;
+    cursor: pointer;
+}
+
+.toggle-btn.active {
+    background: #900;
+    color: #fff;
+    border-color: #900;
+}
+
+.result-limit label {
+    padding-top: 0.3em;
+}
