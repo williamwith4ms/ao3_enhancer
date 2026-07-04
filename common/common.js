@@ -1,9 +1,14 @@
-export function loadWorks() {
-    return browser.storage.local.get(null).then(storedWorks =>
-        Object.entries(storedWorks)
-            .filter(([, workData]) => workData && workData.read)
-            .map(([workId, workData]) => ({ id: workId, ...workData }))
-    );
+export async function loadWorks() {
+    // return browser.storage.local.get(null).then(storedWorks =>
+    //     Object.entries(storedWorks)
+    //         .filter(([, workData]) => workData && workData.read)
+    //         .map(([workId, workData]) => ({ id: workId, ...workData }))
+    // );
+
+    const storedWorks = await browser.storage.local.get(null);
+    return Object.entries(storedWorks)
+        .filter(([, workData]) => workData && workData.read)
+        .map(([workId, workData]) => ({ id: workId, ...workData }));
 }
 
 export function ao3UriEncode(str) {
@@ -14,11 +19,13 @@ export function ao3UriEncode(str) {
     // ? -> *q*
     // # -> *h*
     // % -> *p*
+    // . -> *d*
     return String(str).replace(/&/g, '*a*')
         .replace(/\//g, '*s*')
         .replace(/\?/g, '*q*')
         .replace(/#/g, '*h*')
-        .replace(/%/g, '*p*');
+        .replace(/%/g, '*p*')
+        .replace(/\./g, '*d*');
 }
 
 export function ao3UriDecode(str) {
@@ -28,5 +35,7 @@ export function ao3UriDecode(str) {
         .replace(/\*s\*/g, '/')
         .replace(/\*q\*/g, '?')
         .replace(/\*h\*/g, '#')
-        .replace(/\*p\*/g, '%');
+        .replace(/\*p\*/g, '%')
+        .replace(/\*d\*/g, '.');
 }
+

@@ -5,7 +5,8 @@ not my best code but it works :3
 - [ ] History tag searching
 - [x] History statistics e.g. most common tags, most common fandoms, etc.
   - [ ] Add extra stats e.g. compare to actual books, estimate reading hours, etc.
-- [ ] Search tag blocking
+- [x] Search tag blocking
+  - [ ] better UI for blocking tags
 - [ ] Automatic mark as read when reaching the end of a work
 - [ ] Per chapter mark as read
 - [ ] use `browser.storage.sync` to sync history (would require only storing the id and then having a system to fetch the work data from the id)

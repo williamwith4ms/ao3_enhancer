@@ -28,7 +28,12 @@
 
         const listItem = document.createElement("li");
         const blockButton = document.createElement("button");
-        blockButton.textContent = isBlocked(tagName) ? "Unblock Tag" : "Block Tag";
+        if (await isBlocked(tagName)) {
+            blockButton.textContent = "Unblock Tag";
+        } else {
+            blockButton.textContent = "Block Tag";
+        }
+
 
 
         listItem.appendChild(blockButton);
@@ -36,23 +41,34 @@
 
         blockButton.addEventListener("click", async () => {
             const blockedTags = await browser.storage.local.get("blockedTags");
-            const blockedTagsArray = blockedTags.blockedTags || [];
-            if (blockedTagsArray.includes(tagName)) {
-                // unblock
-                const index = blockedTagsArray.indexOf(tagName);
-                blockedTagsArray.splice(index, 1);
-                blockButton.textContent = "Block Tag";
+            let blockedTagsArray = blockedTags.blockedTags || [];
+
+            if (await isBlocked(tagName)) {
+                try {
+                    blockedTagsArray = blockedTagsArray.filter(tag => tag !== tagName);
+                    await browser.storage.local.set({ blockedTags: blockedTagsArray });
+                    blockButton.textContent = "Block Tag";
+                } catch (error) {
+                    console.error("Failed to unblock tag:", error);
+                }
             } else {
-                // block
-                blockedTagsArray.push(tagName);
-                blockButton.textContent = "Unblock Tag";
+                try {
+                    blockedTagsArray.push(tagName);
+                    await browser.storage.local.set({ blockedTags: blockedTagsArray });
+                    blockButton.textContent = "Unblock Tag";
+                } catch (error) {
+                    console.error("Failed to block tag:", error);
+                }
             }
         });
     }
 
     async function isBlocked(tagName) {
+        console.log("Checking if tag is blocked:", tagName);
         const blockedTags = await browser.storage.local.get("blockedTags");
         const blockedTagsArray = blockedTags.blockedTags || [];
+        console.log("Blocked tags from storage:", blockedTagsArray);
+        console.log("Is the tag blocked?", blockedTagsArray.includes(tagName));
         return blockedTagsArray.includes(tagName);
     }
 
@@ -76,20 +92,35 @@
         });
 
         // tag blocking, read from the block tags in storage and blur works out with a button top unhide them
-        const blockedTags = await browser.storage.local.get("blockedTags");
+        const blockedTags = await loadBlockedTags();
         if (blockedTags) {
             blurbs.forEach((blurb, i) => {
-                const tags = [...blurb.querySelectorAll("ul.tags li a")].map(tag => tag.textContent.trim());
-                const hasBlockedTag = false;
-                for (const tag of tags) {
-                    if (blockedTags.blockedTags?.includes(tag)) {
+                const tagElements = [...blurb.querySelectorAll("ul.tags li a")];
+
+                let hasBlockedTag = false;
+                for (const tagElement of tagElements) {
+                    const tagText = tagElement.textContent.trim();
+                    if (blockedTags.has(tagText)) {
                         hasBlockedTag = true;
-                        break;
+                        tagElement.classList.add("blocked-tag");
                     }
                 }
 
                 if (hasBlockedTag) {
-                    blurb.classList.add("ao3ext_blocked");
+                    const blurContainer = document.createElement("div");
+                    blurContainer.classList.add("ao3ext_blur_container");
+                    blurb.before(blurContainer);
+                    blurb.classList.add("ao3ext_blurred");
+                    blurContainer.appendChild(blurb);
+                    const unhideButton = document.createElement("button");
+                    unhideButton.textContent = "Unhide Work";
+                    unhideButton.classList.add("ao3ext_unhide_button");
+
+                    unhideButton.addEventListener("click", () => {
+                        blurContainer.before(blurb);
+                        blurContainer.remove();
+                        blurb.classList.remove("ao3ext_blurred");
+                    }); blurContainer.appendChild(unhideButton);
                 }
             });
         }
@@ -191,6 +222,11 @@
             return false;
         }
         return response[workId].read;
+    }
+
+    async function loadBlockedTags() {
+        const stored = await browser.storage.local.get("blockedTags");
+        return new Set(stored?.blockedTags ?? []);
     }
 
 })();

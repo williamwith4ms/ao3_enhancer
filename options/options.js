@@ -85,11 +85,12 @@ import { ao3UriDecode, ao3UriEncode } from "../common/common.js";
         }
     })();
 
-    // save blocked tags to storage when the save button is clicked
+    // save blocked tags to storage when the save button is clicked use a set to remove duplicates and trim whitespace but store as an array
     document.getElementById("save-blocked-tags").addEventListener("click", async () => {
         const blockedTagsInput = document.getElementById("blocked-tags").value;
-        const blockedTagsArray = blockedTagsInput.split(",").map(tag => ao3UriDecode(tag.trim())).filter(tag => tag.length > 0);
-        await browser.storage.local.set({ blockedTags: blockedTagsArray });
-        alert("Tags saved successfully.");
+        const blockedTagsArray = blockedTagsInput.split(",").map(tag => tag.trim()).filter(tag => tag.length > 0);
+        const uniqueBlockedTags = Array.from(new Set(blockedTagsArray)).map(tag => ao3UriEncode(tag));
+        await browser.storage.local.set({ blockedTags: uniqueBlockedTags });
+        alert("Blocked tags saved successfully.");
     });
 })();
