@@ -5,3 +5,18 @@ export function loadWorks() {
             .map(([workId, workData]) => ({ id: workId, ...workData }))
     );
 }
+
+export function ao3UriEncode(str) {
+    if (str == null) return "";
+
+    // & -> *a*
+    // / -> *s*
+    // ? -> *q*
+    // # -> *h*
+    // % -> *p*
+    return String(str).replace(/&/g, '*a*')
+        .replace(/\//g, '*s*')
+        .replace(/\?/g, '*q*')
+        .replace(/#/g, '*h*')
+        .replace(/%/g, '*p*');
+}
