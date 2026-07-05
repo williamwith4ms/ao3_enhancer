@@ -1,5 +1,5 @@
 [![GitHub License](https://img.shields.io/github/license/williamwith4ms/ao3_additions)](https://github.com/williamwith4ms/ao3_additions/blob/main/LICENSE)
-[![GitHub Release](https://img.shields.io/github/v/release/williamwith4ms/ao3_additions)](https://github.com/williamwith4ms/ao3_additions/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/williamwith4ms/ao3_additions)](https://github.com/williamwith4ms/ao3_additions/releases/latest)
 [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/williamwith4ms/ao3_additions)](https://github.com/williamwith4ms/ao3_additions/issues)
 
 # Ao3 Additions
