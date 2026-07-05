@@ -1,5 +1,14 @@
-# ao3_extension
-not my best code but it works :3
+![GitHub License](https://img.shields.io/github/license/williamwith4ms/ao3_additions)
+![GitHub Release](https://img.shields.io/github/v/release/williamwith4ms/ao3_additions)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/williamwith4ms/ao3_additions)
+
+# Ao3 Additions
+Currently adds:
+- History tracking
+- History Statistics
+- Tag Blocking
+- Highlights already-read works on search
+
 ## TODO (not in any particular order)
 - [x] Import history and merge for a way to kinda share between devices
 - [ ] History tag searching
@@ -15,3 +24,5 @@ not my best code but it works :3
 - [ ] make it look pretty
 - [x] organise the files better
 - [ ] track the time spent reading and use the word count to estimate reading speed
+
+Disclaimer: This is not an official extension.
